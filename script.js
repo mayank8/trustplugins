@@ -107,12 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
         storeBtn.className = 'btn-web-store';
         storeBtn.innerHTML = `
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 7H13V13H17V15H11V7Z" fill-opacity="0" /> <!-- Fallback icon, Chrome logo usually svg -->
-                <path d="M12 0C5.37 0 0 5.37 0 12C0 18.63 5.37 24 12 24C18.63 24 24 18.63 24 12C24 5.37 18.63 0 12 0ZM12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22Z" fill="white"/>
-                <path d="M11 7H13V15H11V7Z" fill="white" transform="rotate(270 12 11) translate(-2)"/> 
-                <!-- Simple Plus icon for 'Add' -->
-                <span>Add to Chrome</span>
-            `;
+                <path d="M20.5,11H19V7c0-1.1-0.9-2-2-2h-4V3.5C13,2.12,11.88,1,10.5,1S8,2.12,8,3.5V5H4C2.9,5,2,5.9,2,7v4h1.5 c1.38,0,2.5,1.12,2.5,2.5S4.88,16,3.5,16H2v4c0,1.1,0.9,2,2,2h4v-1.5c0-1.38,1.12-2.5,2.5-2.5S13,19.12,13,20.5V22h4 c1.1,0,2-0.9,2-2v-4h1.5c1.38,0,2.5-1.12,2.5-2.5S21.88,11,20.5,11z" />
+            </svg>
+            <span>Add to Chrome</span>
+        `;
 
         const detailsBtn = document.createElement('button');
         detailsBtn.className = 'btn-details';
