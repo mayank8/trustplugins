@@ -48,9 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
      * @returns {HTMLElement} - The fully constructed card element
      */
     function createPluginCard(plugin) {
-        const article = document.createElement('article');
+        const article = document.createElement('a');
         article.className = 'plugin-card';
         article.id = `plugin-${plugin.id}`;
+        article.href = plugin.storeLink;
+        article.target = '_blank';
+        article.rel = 'noopener noreferrer';
 
         // Header: Icon + Title + Tagline
         const header = document.createElement('div');
@@ -100,11 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const footer = document.createElement('div');
         footer.className = 'card-footer';
 
-        const storeBtn = document.createElement('a');
-        storeBtn.href = plugin.storeLink;
+        const storeBtn = document.createElement('div');
         storeBtn.className = 'btn-web-store';
-        storeBtn.target = '_blank';
-        storeBtn.rel = 'noopener noreferrer';
         storeBtn.innerHTML = `
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 7H13V13H17V15H11V7Z" fill-opacity="0" /> <!-- Fallback icon, Chrome logo usually svg -->

@@ -1,13 +1,21 @@
 :root {
     /* Colors */
-    --primary-blue: #0ea5e9; /* Sky 500 */
-    --primary-dark: #0284c7; /* Sky 600 */
-    --accent-green: #10b981; /* Emerald 500 */
-    --bg-dark: #0f172a; /* Slate 900 */
-    --bg-card: #1e293b; /* Slate 800 */
-    --text-white: #f8fafc; /* Slate 50 */
-    --text-gray: #94a3b8; /* Slate 400 */
-    --border-color: #334155; /* Slate 700 */
+    --primary-blue: #0ea5e9;
+    /* Sky 500 */
+    --primary-dark: #0284c7;
+    /* Sky 600 */
+    --accent-green: #10b981;
+    /* Emerald 500 */
+    --bg-dark: #0f172a;
+    /* Slate 900 */
+    --bg-card: #1e293b;
+    /* Slate 800 */
+    --text-white: #f8fafc;
+    /* Slate 50 */
+    --text-gray: #94a3b8;
+    /* Slate 400 */
+    --border-color: #334155;
+    /* Slate 700 */
 
     /* Typography */
     --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -83,6 +91,9 @@ ul {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .nav-links {
@@ -392,7 +403,7 @@ ul {
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .section-title {
         font-size: 1.75rem;
     }
@@ -401,7 +412,7 @@ ul {
         flex-direction: column;
         gap: 1.5rem;
     }
-    
+
     .card-footer {
         flex-direction: column;
     }
