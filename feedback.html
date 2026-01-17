@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback | TrustPlugins</title>
+    <meta name="description"
+        content="We value your feedback. Help us improve TrustPlugins extensions like ChromeTrack and GoCapture.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <style>
+        /* Page-specific overrides to reuse header style without the huge hero */
+        .header-compact {
+            padding-bottom: 2rem;
+            min-height: auto;
+        }
+
+        .iframe-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #ffffff;
+            /* Form background is likely white */
+            margin-top: 2rem;
+        }
+
+        .section-title.compact {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header header-compact">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo.png" alt="TrustPlugins Logo" height="32">
+                    TrustPlugins
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html#plugins">Plugins</a></li>
+                    <li><a href="index.html#about">Philosophy</a></li>
+                    <li><a href="feedback.html" style="color: var(--text-white);">Feedback</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title compact">We Value Your Feedback</h1>
+                <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 2rem auto;">
+                    Have a suggestion, found a bug, or just want to say hi? Fill out the form below.
+                </p>
+                <div class="iframe-container">
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSd_aINtvyrSrnxA9Cg-YSU_kQq6mi0M6Oc4TmcXO7gGYQn9JQ/viewform?embedded=true"
+                        width="640" height="1345" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>TrustPlugins</h3>
+                    <p>Building a better web, one extension at a time.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <a href="feedback.html">Feedback</a>
+                    <a href="https://github.com/TrustPlugins" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="mailto:contact@trustplugins.com">Email Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TrustPlugins. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
