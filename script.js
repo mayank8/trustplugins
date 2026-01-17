@@ -48,12 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
      * @returns {HTMLElement} - The fully constructed card element
      */
     function createPluginCard(plugin) {
-        const article = document.createElement('a');
+        // Change from <a> to <div> as the main container
+        const article = document.createElement('div');
         article.className = 'plugin-card';
         article.id = `plugin-${plugin.id}`;
-        article.href = plugin.storeLink;
-        article.target = '_blank';
-        article.rel = 'noopener noreferrer';
+
+        // Add click listener to toggle expanded state
+        article.addEventListener('click', () => {
+            article.classList.toggle('expanded');
+        });
 
         // Header: Icon + Title + Tagline
         const header = document.createElement('div');
@@ -79,6 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
         header.appendChild(img);
         header.appendChild(titleGroup);
 
+        // Add Expand Icon
+        const expandIcon = document.createElement('div');
+        expandIcon.innerHTML = `
+            <svg class="expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        `;
+        header.appendChild(expandIcon);
+
         // Body: Description + Features
         const body = document.createElement('div');
         body.className = 'card-body';
@@ -103,8 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const footer = document.createElement('div');
         footer.className = 'card-footer';
 
-        const storeBtn = document.createElement('div');
+        // Change storeBtn to an <a> tag
+        const storeBtn = document.createElement('a');
         storeBtn.className = 'btn-web-store';
+        storeBtn.href = plugin.storeLink;
+        storeBtn.target = '_blank';
+        storeBtn.rel = 'noopener noreferrer';
         storeBtn.innerHTML = `
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.5,11H19V7c0-1.1-0.9-2-2-2h-4V3.5C13,2.12,11.88,1,10.5,1S8,2.12,8,3.5V5H4C2.9,5,2,5.9,2,7v4h1.5 c1.38,0,2.5,1.12,2.5,2.5S4.88,16,3.5,16H2v4c0,1.1,0.9,2,2,2h4v-1.5c0-1.38,1.12-2.5,2.5-2.5S13,19.12,13,20.5V22h4 c1.1,0,2-0.9,2-2v-4h1.5c1.38,0,2.5-1.12,2.5-2.5S21.88,11,20.5,11z" />
@@ -112,13 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>Add to Chrome</span>
         `;
 
-        const detailsBtn = document.createElement('button');
-        detailsBtn.className = 'btn-details';
-        detailsBtn.textContent = 'Details';
-        detailsBtn.onclick = () => alert(`More details for ${plugin.name} coming soon!`);
+        // Prevent click propagation so clicking the button doesn't toggle the card
+        storeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        /* 
+           Since details button is hidden, we don't strictly need it, 
+           but if we were to add it back it should also stop propagation. 
+        */
 
         footer.appendChild(storeBtn);
-        // footer.appendChild(detailsBtn); // Optional: hidden for now as per requirements asking for minimal MVP
+        // footer.appendChild(detailsBtn); 
 
         article.appendChild(header);
         article.appendChild(body);

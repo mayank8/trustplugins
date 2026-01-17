@@ -187,6 +187,8 @@ ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2.5rem;
+    align-items: start;
+    /* Fixes the issue where all cards stretch to the same height */
 }
 
 .plugin-card {
@@ -203,6 +205,12 @@ ul {
 .plugin-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary-blue);
+    cursor: pointer;
+}
+
+.plugin-card.expanded {
+    border-color: var(--primary-blue);
+    background: rgba(30, 41, 59, 0.9);
 }
 
 .card-header {
@@ -227,15 +235,49 @@ ul {
     margin-bottom: 0.25rem;
 }
 
+.plugin-title {
+    flex-grow: 1;
+}
+
 .plugin-tagline {
     color: var(--accent-green);
     font-size: 0.9rem;
     font-weight: 500;
 }
 
+.expand-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-gray);
+    transition: transform 0.3s ease, color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.plugin-card:hover .expand-icon {
+    color: var(--primary-blue);
+}
+
+.plugin-card.expanded .expand-icon {
+    transform: rotate(180deg);
+    color: var(--primary-blue);
+}
+
 .card-body {
-    padding: 2rem;
+    padding: 0 2rem;
+    /* Remove vertical padding when collapsed */
     flex-grow: 1;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.plugin-card.expanded .card-body {
+    padding: 2rem;
+    /* Restore padding when expanded */
+    max-height: 500px;
+    /* Arbitrary large height to allow expansion */
+    opacity: 1;
 }
 
 .plugin-description {
