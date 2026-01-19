@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | TrustPlugins</title>
+    <meta name="description"
+        content="Privacy Policy for TrustPlugins. We do not collect, store, or sell your personal data.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <style>
+        .privacy-content {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .privacy-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
+        }
+
+        .privacy-content .last-updated {
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            display: block;
+        }
+
+        .privacy-content h2 {
+            color: var(--text-white);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .privacy-content p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .privacy-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        .privacy-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-content strong {
+            color: var(--text-white);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-content {
+                padding: 1.5rem;
+            }
+
+            .privacy-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo.png" alt="TrustPlugins Logo" height="32">
+                    TrustPlugins
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html#plugins">Plugins</a></li>
+                    <li><a href="index.html#about">Philosophy</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="privacy-content">
+                    <h1>Privacy Policy</h1>
+                    <span class="last-updated">Last Updated: January 20, 2026</span>
+
+                    <h2>1. Introduction</h2>
+                    <p>This Privacy Policy applies to the browser extensions and software applications (collectively,
+                        the "Services") developed by TrustPlugins (including Sonicwave, ChromeTrack, GoCapture, and
+                        TubeTunnel).</p>
+                    <p>We respect your privacy. Our fundamental principle is simple: <strong>We do not collect, store,
+                            or sell your personal data.</strong> Our applications are designed to process all data
+                        locally on your device.</p>
+
+                    <h2>2. Data Collection and Usage</h2>
+                    <p>We do not transmit any personally identifiable information (PII) or user content to external
+                        servers.</p>
+                    <ul>
+                        <li><strong>Local Processing:</strong> All core functionality (such as audio equalization,
+                            screen recording, or time tracking) occurs strictly within your browser environment.</li>
+                        <li><strong>No Accounts Required:</strong> You do not need to create an account or login to use
+                            our extensions.</li>
+                        <li><strong>No Tracking:</strong> We do not track your browsing history, search queries, or
+                            behavior across websites.</li>
+                    </ul>
+
+                    <h2>3. Permissions and Technical Access</h2>
+                    <p>To function correctly, our extensions require specific permissions. These are used solely for
+                        functionality and never for surveillance.</p>
+                    <ul>
+                        <li><strong>Storage (storage):</strong> We use the Chrome Storage API to save your settings
+                            locally (e.g., your preferred equalizer preset, dark mode preference, or timer
+                            configuration). This data never leaves your browser.</li>
+                        <li><strong>Audio Capture (tabCapture):</strong> (For Sonicwave): We access the audio stream of
+                            the active tab strictly to apply audio effects (EQ, bass boost). This stream is processed in
+                            real-time RAM and is never recorded or transmitted.</li>
+                        <li><strong>Screen/Tab Capture:</strong> (For GoCapture): We access the video stream only when
+                            you explicitly click "Record." The resulting file is generated locally on your machine.</li>
+                        <li><strong>Host Permissions:</strong> We may require access to current websites to modify the
+                            DOM (e.g., for TubeTunnel to hide elements). This is done via local scripts.</li>
+                    </ul>
+
+                    <h2>4. Third-Party Services</h2>
+                    <p>Our extensions generally do not use third-party analytics services that track individual users.
+                    </p>
+                    <p>If an extension contains links to external websites (e.g., a donation page or support form),
+                        those sites are not governed by this policy.</p>
+
+                    <h2>5. Data Security</h2>
+                    <p>Because we do not collect user data, there is no data repository for us to secure or for hackers
+                        to steal. Your settings and data reside entirely on your local machine and are subject to your
+                        own device's security protocols.</p>
+
+                    <h2>6. Changes to This Policy</h2>
+                    <p>We may update this policy to reflect changes in our services or regulatory requirements. Any
+                        changes will be posted on this page, and significant updates will be communicated via the
+                        extension's update notes.</p>
+
+                    <h2>7. Contact Us</h2>
+                    <p>If you have questions about this policy or our privacy practices, please contact us at:</p>
+                    <p>Website: Trustplugins.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>TrustPlugins</h3>
+                    <p>Building a better web, one extension at a time.</p>
+                </div>
+                <div class="footer-links" id="contact">
+                    <h4>Connect</h4>
+                    <a href="feedback.html">Feedback</a>
+                    <a href="https://github.com/TrustPlugins" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="mailto:contact@trustplugins.com">Email Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TrustPlugins. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
