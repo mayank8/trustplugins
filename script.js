@@ -29,6 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'assets/icons/gocapture.png',
             storeLink: 'https://chromewebstore.google.com/detail/gocapture-free-unlimited/bmfkkbckcamgbhgiheabadjgaidefdmj',
             detailsLink: '#'
+        },
+        {
+            id: 'tubetunnel',
+            name: 'TubeTunnel',
+            tagline: 'Hide Shorts, comments, and distractions.',
+            description: 'Take back control of your time on YouTube. Hide algorithmic noise, Shorts, comments, and recommendations to focus on what matters.',
+            features: [
+                'Hide Shorts & Trending',
+                'Block Comments & Recommendations',
+                'Focus Mode for Video Player'
+            ],
+            icon: 'assets/icons/tubetunnel.png',
+            storeLink: 'https://chromewebstore.google.com/detail/tubetunnel-hide-shorts-co/ccngecmipkielckpekbofkejbgciiopo',
+            detailsLink: '#'
         }
     ];
 
