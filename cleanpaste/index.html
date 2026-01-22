@@ -11,148 +11,122 @@
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
 <body>
+    <!-- Duplicate header removed -->
+
     <div class="app-container">
-        <header class="header">
-            <div class="container">
-                <nav class="nav">
-                    <a href="../index.html" class="logo">
-                        <img src="../assets/logo.png" alt="TrustPlugins Logo" height="32">
-                        TrustPlugins
-                    </a>
-                    <ul class="nav-links">
-                        <li><a href="../index.html#plugins">Plugins</a></li>
-                        <li><a href="index.html" class="active">CleanPaste</a></li>
-                        <li><a href="../index.html#about">Philosophy</a></li>
-                        <li><a href="../feedback.html">Feedback</a></li>
-                        <li>
-                            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                </svg>
-                                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <!-- Header replaced by id="app-header" above, but we need to structure app-container correctly.
+             The sidebar layout expects app-container to wrap everything including header?
+             Let's check style.css. 
+             .app-container is flex column min-h 100vh.
+             header is flex row.
+             
+             If I put #app-header outside app-container, I might break the flex layout if app-container is 100vh.
+             Let's put #app-header INSIDE .app-container.
+        -->
+        <div class="app-container">
+            <!-- Header will be injected by layout.js -->
+            <div id="app-header"></div>
 
-        <main class="main-layout">
-            <aside class="sidebar">
-                <div class="sidebar-header">
-                    <h1 class="app-title">CleanPaste</h1>
-                    <p class="app-description">Remove AI fingerprints & hidden chars.</p>
-                    <div class="divider"></div>
-                    <h2>Configuration</h2>
-                </div>
-                <div class="controls">
-                    <label class="toggle-control">
-                        <input type="checkbox" id="remove-hidden" checked>
-                        <span class="toggle-track"></span>
-                        <span class="label-text">Remove Hidden AI Artifacts</span>
-                        <span class="info-tooltip"
-                            title="Removes zero-width spaces and other invisible characters.">?</span>
-                    </label>
-
-                    <label class="toggle-control">
-                        <input type="checkbox" id="fix-pdf">
-                        <span class="toggle-track"></span>
-                        <span class="label-text">Fix Broken Lines (PDF Mode)</span>
-                        <span class="info-tooltip"
-                            title="Fixes line breaks from PDFs while preserving paragraphs.">?</span>
-                    </label>
-
-                    <label class="toggle-control">
-                        <input type="checkbox" id="remove-emojis">
-                        <span class="toggle-track"></span>
-                        <span class="label-text">Remove Emojis</span>
-                    </label>
-
-                    <div class="control-group">
-                        <span class="group-label">Capitalization</span>
-                        <select id="caps-mode">
-                            <option value="none">Don't Change</option>
-                            <option value="sentence">Sentence Case</option>
-                            <option value="title">Title Case</option>
-                            <option value="lower">lowercase</option>
-                            <option value="upper">UPPERCASE</option>
-                        </select>
+            <main class="main-layout">
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <img src="assets/logo.png" alt="CleanPaste Logo" class="app-logo" width="64" height="64">
+                        <h1 class="app-title">CleanPaste</h1>
+                        <p class="app-description">Remove AI fingerprints & hidden chars.</p>
+                        <div class="divider"></div>
+                        <h2>Configuration</h2>
                     </div>
-                </div>
+                    <div class="controls">
+                        <label class="toggle-control">
+                            <input type="checkbox" id="remove-hidden" checked>
+                            <span class="toggle-track"></span>
+                            <span class="label-text">Remove Hidden AI Artifacts</span>
+                            <span class="info-tooltip"
+                                title="Removes zero-width spaces and other invisible characters.">?</span>
+                        </label>
 
-                <div class="stats-panel">
-                    <div class="stat-item">
-                        <span class="stat-label">Chars</span>
-                        <span id="char-count" class="stat-value">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Words</span>
-                        <span id="word-count" class="stat-value">0</span>
-                    </div>
-                </div>
-            </aside>
+                        <label class="toggle-control">
+                            <input type="checkbox" id="fix-pdf">
+                            <span class="toggle-track"></span>
+                            <span class="label-text">Fix Broken Lines (PDF Mode)</span>
+                            <span class="info-tooltip"
+                                title="Fixes line breaks from PDFs while preserving paragraphs.">?</span>
+                        </label>
 
-            <section class="editor-area">
-                <textarea id="text-input" placeholder="Paste your text here..." autofocus></textarea>
-                <div class="action-bar">
-                    <button id="clear-btn" class="btn secondary">Clear</button>
-                    <button id="clean-copy-btn" class="btn primary">
-                        <span class="btn-text">Clean & Copy</span>
-                        <span class="btn-icon">↵</span>
-                    </button>
-                </div>
-            </section>
-        </main>
+                        <label class="toggle-control">
+                            <input type="checkbox" id="remove-emojis">
+                            <span class="toggle-track"></span>
+                            <span class="label-text">Remove Emojis</span>
+                        </label>
 
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-brand">
-                        <h3>TrustPlugins</h3>
-                        <p>Building a better web, one extension at a time.</p>
+                        <div class="control-group">
+                            <span class="group-label">Capitalization</span>
+                            <select id="caps-mode">
+                                <option value="none">Don't Change</option>
+                                <option value="sentence">Sentence Case</option>
+                                <option value="title">Title Case</option>
+                                <option value="lower">lowercase</option>
+                                <option value="upper">UPPERCASE</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="footer-links" id="contact">
-                        <h4>Connect</h4>
-                        <a href="../feedback.html">Feedback</a>
-                        <a href="../privacy.html">Privacy Policy</a>
-                        <a href="https://github.com/TrustPlugins" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a href="mailto:contact@trustplugins.com">Email Us</a>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2026 TrustPlugins. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
 
-    <div id="toast" class="toast hidden">Copied to clipboard!</div>
-    <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('SW registered'))
-                .catch(err => console.log('SW registration failed', err));
-        }
-    </script>
+                    <div class="stats-panel">
+                        <div class="stat-item">
+                            <span class="stat-label">Chars</span>
+                            <span id="char-count" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Words</span>
+                            <span id="word-count" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="editor-area">
+                    <textarea id="text-input" placeholder="Paste your text here..." autofocus></textarea>
+                    <div class="action-bar">
+                        <button id="clear-btn" class="btn secondary">Clear</button>
+                        <button id="clean-copy-btn" class="btn primary">
+                            <span class="btn-text">Clean & Copy</span>
+                            <span class="btn-icon">↵</span>
+                        </button>
+                    </div>
+                </section>
+            </main>
+
+            <div id="app-footer"></div>
+        </div>
+
+        <div id="toast" class="toast hidden">Copied to clipboard!</div>
+
+        <!-- Shared Layout -->
+        <script src="../layout.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                Layout.renderHeader({
+                    rootPath: '..',
+                    activePage: 'cleanpaste',
+                    customMenuItems: [
+                        { label: 'Settings', id: 'mobile-settings-toggle', href: '#' }
+                    ]
+                });
+                Layout.renderFooter({ rootPath: '..' });
+            });
+        </script>
+
+        <script src="script.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW registration failed', err));
+            }
+        </script>
 </body>
 
 </html>

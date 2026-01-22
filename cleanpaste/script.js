@@ -18,6 +18,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const toast = document.getElementById('toast');
 
+    // --- Mobile Navigation & Sidebar Logic ---
+    // Note: Hamburger and NavLinks are handled by layout.js
+    // We only need to handle the specific "Settings" toggle which triggers our sidebar.
+
+    // Use event delegation for the dynamically created settings toggle
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'mobile-settings-toggle') {
+            e.preventDefault();
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+
+            if (sidebar && overlay) {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            }
+
+            // Layout.js handles closing the nav menu when a link is clicked.
+            // But we might need to ensure sidebar opens nicely.
+        }
+    });
+
+    const sidebar = document.querySelector('.sidebar');
+
+    // Create overlay for sidebar if not exists (though styles might handle it, script created it before)
+    // We should create it if it doesn't exist
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    // Close sidebar on overlay click
+    overlay.addEventListener('click', () => {
+        if (sidebar) sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
     // Toggles / Inputs
     const removeHiddenInput = document.getElementById('remove-hidden');
     const fixPdfInput = document.getElementById('fix-pdf');

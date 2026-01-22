@@ -18,41 +18,18 @@
 </head>
 
 <body>
-    <header class="header">
+    <div id="app-header"></div>
+
+    <div class="hero">
         <div class="container">
-            <nav class="nav">
-                <a href="#" class="logo">
-                    <img src="assets/logo.png" alt="TrustPlugins Logo" height="32">
-                    TrustPlugins
-                </a>
-                <ul class="nav-links">
-                    <li class="dropdown-parent">
-                        <a href="#plugins" class="nav-link">Plugins ▾</a>
-                        <ul class="dropdown-menu" id="plugins-dropdown">
-                            <!-- Populated by JS -->
-                        </ul>
-                    </li>
-                    <li class="dropdown-parent">
-                        <a href="#webapps" class="nav-link">Web Apps ▾</a>
-                        <ul class="dropdown-menu" id="webapps-dropdown">
-                            <!-- Populated by JS -->
-                        </ul>
-                    </li>
-                    <li><a href="#about">Philosophy</a></li>
-                    <li><a href="feedback.html">Feedback</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="hero">
-                <h1 class="hero-title">Developing clean, transparent,<br> <span class="highlight">free of cost</span>
-                    apps for users.</h1>
-                <p class="hero-tagline">No hidden tracking. No bloatware. Just pure utility.</p>
-                <div class="hero-cta-wrapper">
-                    <a href="#plugins" class="cta-button primary">Explore Plugins</a>
-                </div>
+            <h1 class="hero-title">Developing clean, transparent,<br> <span class="highlight">free of cost</span>
+                apps for users.</h1>
+            <p class="hero-tagline">No hidden tracking. No bloatware. Just pure utility.</p>
+            <div class="hero-cta-wrapper">
+                <a href="#plugins" class="cta-button primary">Explore Plugins</a>
             </div>
         </div>
-    </header>
+    </div>
 
     <main>
         <section id="plugins" class="section plugins-section">
@@ -100,27 +77,19 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>TrustPlugins</h3>
-                    <p>Building a better web, one extension at a time.</p>
-                </div>
-                <div class="footer-links" id="contact">
-                    <h4>Connect</h4>
-                    <a href="feedback.html">Feedback</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="https://github.com/TrustPlugins" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="mailto:contact@trustplugins.com">Email Us</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 TrustPlugins. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="app-footer"></div>
+    <!-- Footer injected by layout.js -->
 
+    <script src="layout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Layout.renderHeader({
+                rootPath: '.',
+                activePage: 'home'
+            });
+            Layout.renderFooter({ rootPath: '.' });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 

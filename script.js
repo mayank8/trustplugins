@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'cleanpaste',
             name: 'CleanPaste',
-            tagline: 'Format and clean your text efficiently.',
-            description: 'A simple, powerful tool to clean formatted text, remove whitespace, and prepare content for publishing. Handles various text transformations securely in your browser.',
+            tagline: 'Remove AI fingerprints and clean text instantly.',
+            description: 'The ultimate tool to humanize your text. cleanPaste strips away hidden AI artifacts, zero-width characters, and weird formatting that give away AI-generated content. Perfect for writers, students, and content creators.',
             features: [
-                'Remove Formatting & Styles',
-                'Fix Spacing & Punctuation',
+                'Removes Hidden AI Fingerprints',
+                'Fixes Spacing & Punctuation',
                 '100% Client-Side Processing'
             ],
-            icon: 'assets/logo.png',
+            icon: 'cleanpaste/assets/logo.png',
             appLink: 'cleanpaste/index.html',
             type: 'webapp'
         }
@@ -81,37 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. Navigation Dropdown Population
-    populateDropdown('plugins-dropdown', plugins);
-    populateDropdown('webapps-dropdown', webApps);
+    // Handled by layout.js automatically on renderHeader
 
-    /**
-     * Populates a dropdown menu with items
-     * @param {string} dropdownId - The ID of the dropdown container ul
-     * @param {Array} items - Array of item objects
-     */
-    function populateDropdown(dropdownId, items) {
-        const dropdown = document.getElementById(dropdownId);
-        if (!dropdown) return;
-
-        items.forEach(item => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-
-            if (item.type === 'extension') {
-                a.href = `#plugin-${item.id}`;
-                a.onclick = (e) => {
-                    // Smooth scroll and expand logic handled by hash change or click
-                    handlePluginNavigation(item.id);
-                };
-            } else {
-                a.href = item.appLink;
-            }
-
-            a.textContent = item.name;
-            li.appendChild(a);
-            dropdown.appendChild(li);
-        });
+    // Handle hash changes to expand cards
+    function checkHash() {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#plugin-')) {
+            const id = hash.replace('#plugin-', '');
+            handlePluginNavigation(id);
+        }
     }
+    window.addEventListener('hashchange', checkHash);
+    checkHash(); // Check on load
+
+    // Mobile Navigation Toggle logic is now handled by layout.js
 
     /**
      * Handles navigation to a specific plugin card
