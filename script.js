@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Plugins Data Configuration
-    // To add a new plugin, simply add a new object to this array.
+    // 1. Data Configuration
     const plugins = [
         {
             id: 'chrometrack',
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             icon: 'assets/icons/chrometrack.png',
             storeLink: 'https://chromewebstore.google.com/detail/chrometrack-web-time-trac/cnomdpgnoiikoffhdfmpkpfjhgcmknle?hl=en&authuser=0',
-            detailsLink: '#'
+            type: 'extension'
         },
         {
             id: 'gocapture',
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             icon: 'assets/icons/gocapture.png',
             storeLink: 'https://chromewebstore.google.com/detail/gocapture-free-unlimited/bmfkkbckcamgbhgiheabadjgaidefdmj',
-            detailsLink: '#'
+            type: 'extension'
         },
         {
             id: 'tubetunnel',
@@ -42,22 +41,96 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             icon: 'assets/icons/tubetunnel.png',
             storeLink: 'https://chromewebstore.google.com/detail/tubetunnel-hide-shorts-co/ccngecmipkielckpekbofkejbgciiopo',
-            detailsLink: '#'
+            type: 'extension'
+        }
+    ];
+
+    const webApps = [
+        {
+            id: 'cleanpaste',
+            name: 'CleanPaste',
+            tagline: 'Format and clean your text efficiently.',
+            description: 'A simple, powerful tool to clean formatted text, remove whitespace, and prepare content for publishing. Handles various text transformations securely in your browser.',
+            features: [
+                'Remove Formatting & Styles',
+                'Fix Spacing & Punctuation',
+                '100% Client-Side Processing'
+            ],
+            icon: 'assets/logo.png',
+            appLink: 'cleanpaste/index.html',
+            type: 'webapp'
         }
     ];
 
     // 2. Render Logic
-    const container = document.getElementById('plugins-container');
+    const pluginsContainer = document.getElementById('plugins-container');
+    const webAppsContainer = document.getElementById('webapps-container');
 
-    if (container) {
+    if (pluginsContainer) {
         plugins.forEach(plugin => {
             const card = createPluginCard(plugin);
-            container.appendChild(card);
+            pluginsContainer.appendChild(card);
+        });
+    }
+
+    if (webAppsContainer) {
+        webApps.forEach(app => {
+            const card = createPluginCard(app);
+            webAppsContainer.appendChild(card);
+        });
+    }
+
+    // 3. Navigation Dropdown Population
+    populateDropdown('plugins-dropdown', plugins);
+    populateDropdown('webapps-dropdown', webApps);
+
+    /**
+     * Populates a dropdown menu with items
+     * @param {string} dropdownId - The ID of the dropdown container ul
+     * @param {Array} items - Array of item objects
+     */
+    function populateDropdown(dropdownId, items) {
+        const dropdown = document.getElementById(dropdownId);
+        if (!dropdown) return;
+
+        items.forEach(item => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+
+            if (item.type === 'extension') {
+                a.href = `#plugin-${item.id}`;
+                a.onclick = (e) => {
+                    // Smooth scroll and expand logic handled by hash change or click
+                    handlePluginNavigation(item.id);
+                };
+            } else {
+                a.href = item.appLink;
+            }
+
+            a.textContent = item.name;
+            li.appendChild(a);
+            dropdown.appendChild(li);
         });
     }
 
     /**
-     * Creates a HTML element for a plugin card
+     * Handles navigation to a specific plugin card
+     * @param {string} id - The plugin data ID
+     */
+    function handlePluginNavigation(id) {
+        const card = document.getElementById(`plugin-${id}`);
+        if (card) {
+            // Scroll to view
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Expand card if not already expanded
+            if (!card.classList.contains('expanded')) {
+                card.classList.add('expanded');
+            }
+        }
+    }
+
+    /**
+     * Creates a HTML element for a plugin card or web app card
      * @param {Object} plugin - The plugin data object
      * @returns {HTMLElement} - The fully constructed card element
      */
@@ -131,16 +204,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Change storeBtn to an <a> tag
         const storeBtn = document.createElement('a');
-        storeBtn.className = 'btn-web-store';
-        storeBtn.href = plugin.storeLink;
         storeBtn.target = '_blank';
         storeBtn.rel = 'noopener noreferrer';
-        storeBtn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.5,11H19V7c0-1.1-0.9-2-2-2h-4V3.5C13,2.12,11.88,1,10.5,1S8,2.12,8,3.5V5H4C2.9,5,2,5.9,2,7v4h1.5 c1.38,0,2.5,1.12,2.5,2.5S4.88,16,3.5,16H2v4c0,1.1,0.9,2,2,2h4v-1.5c0-1.38,1.12-2.5,2.5-2.5S13,19.12,13,20.5V22h4 c1.1,0,2-0.9,2-2v-4h1.5c1.38,0,2.5-1.12,2.5-2.5S21.88,11,20.5,11z" />
-            </svg>
-            <span>Add to Chrome</span>
-        `;
+
+        if (plugin.type === 'webapp') {
+            storeBtn.className = 'btn-web-store btn-webapp'; // Add specific class if needed for styling
+            storeBtn.href = plugin.appLink;
+            storeBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                </svg>
+                <span>Open App</span>
+            `;
+        } else {
+            storeBtn.className = 'btn-web-store';
+            storeBtn.href = plugin.storeLink;
+            storeBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.5,11H19V7c0-1.1-0.9-2-2-2h-4V3.5C13,2.12,11.88,1,10.5,1S8,2.12,8,3.5V5H4C2.9,5,2,5.9,2,7v4h1.5 c1.38,0,2.5,1.12,2.5,2.5S4.88,16,3.5,16H2v4c0,1.1,0.9,2,2,2h4v-1.5c0-1.38,1.12-2.5,2.5-2.5S13,19.12,13,20.5V22h4 c1.1,0,2-0.9,2-2v-4h1.5c1.38,0,2.5-1.12,2.5-2.5S21.88,11,20.5,11z" />
+                </svg>
+                <span>Add to Chrome</span>
+            `;
+        }
 
         // Prevent click propagation so clicking the button doesn't toggle the card
         storeBtn.addEventListener('click', (e) => {

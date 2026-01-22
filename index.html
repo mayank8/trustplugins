@@ -26,8 +26,18 @@
                     TrustPlugins
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#plugins">Plugins</a></li>
-                    <li><a href="cleanpaste/index.html">CleanPaste</a></li>
+                    <li class="dropdown-parent">
+                        <a href="#plugins" class="nav-link">Plugins ▾</a>
+                        <ul class="dropdown-menu" id="plugins-dropdown">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </li>
+                    <li class="dropdown-parent">
+                        <a href="#webapps" class="nav-link">Web Apps ▾</a>
+                        <ul class="dropdown-menu" id="webapps-dropdown">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </li>
                     <li><a href="#about">Philosophy</a></li>
                     <li><a href="feedback.html">Feedback</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -47,9 +57,18 @@
     <main>
         <section id="plugins" class="section plugins-section">
             <div class="container">
-                <h2 class="section-title">Our Extensions</h2>
+                <h2 class="section-title">Browser Extensions</h2>
                 <div id="plugins-container" class="plugins-grid">
                     <!-- Plugins will be injected here via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="webapps" class="section webapps-section">
+            <div class="container">
+                <h2 class="section-title">Web Apps</h2>
+                <div id="webapps-container" class="plugins-grid">
+                    <!-- Web Apps will be injected here via JavaScript -->
                 </div>
             </div>
         </section>
