@@ -59,6 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'cleanpaste/assets/logo.png',
             appLink: 'cleanpaste/index.html',
             type: 'webapp'
+        },
+        {
+            id: 'tokensqueezer',
+            name: 'Token Squeezer',
+            tagline: 'Optimize prompts & save API tokens.',
+            description: 'Minify your prompts without losing meaning. Token Squeezer intelligently removes stop words, redundant whitespace, and minifies code examples to maximize your context window and reduce API costs.',
+            features: [
+                '3 Compression Levels (Safe to Aggressive)',
+                'Code & JSON Minification',
+                'Live Token Savings Calculator'
+            ],
+            icon: 'tokensqueezer/assets/logo.png',
+            appLink: 'tokensqueezer/index.html',
+            type: 'webapp'
         }
     ];
 

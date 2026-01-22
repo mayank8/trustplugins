@@ -1,0 +1,423 @@
+:root {
+    /* TrustPlugins Theme Variables */
+    --primary-blue: #0ea5e9;
+    --primary-dark: #0284c7;
+    --accent-green: #10b981;
+    --accent-gold: #f59e0b;
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --bg-editor: #020617;
+    /* Darker for editor */
+    --text-white: #f8fafc;
+    --text-gray: #94a3b8;
+    --border-color: #334155;
+
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+
+    /* Workbench Specific */
+    --navbar-height: 70px;
+    --toolbar-height: 60px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-ui);
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    height: 100vh;
+    overflow: hidden;
+    /* App-like feel */
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header Adjustments to match Homepage */
+.header {
+    height: var(--navbar-height);
+    background: radial-gradient(circle at top right, var(--bg-card) 0%, var(--bg-dark) 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* App Hero Section */
+.app-hero {
+    padding: 1.5rem 2rem 0.5rem;
+    background-color: var(--bg-dark);
+}
+
+.hero-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(135deg, var(--accent-gold), var(--primary-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+/* Base Layout Classes used by layout.js */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    /* Ensure full height of header */
+}
+
+/* Re-use Header Styles from before or let layout.js inject consistent ones.
+   We need to ensure layout.js styles don't conflict. 
+   Assuming they are global or imported. 
+   Actually, previous styles were in this file. I need to re-include base header styles.
+*/
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-gray);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-white);
+}
+
+/* Dropdown styles needed? Yes, copy minimal set */
+.dropdown-parent {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    list-style: none;
+}
+
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: var(--border-color);
+}
+
+.dropdown-parent:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-gray);
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--accent-gold);
+}
+
+
+/* Toolbar */
+.toolbar {
+    height: var(--toolbar-height);
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toolbar-label {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Radio Chips */
+.radio-group {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.radio-chip {
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-chip input {
+    display: none;
+}
+
+.radio-chip span {
+    display: block;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.radio-chip input:checked+span {
+    background-color: var(--accent-gold);
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Workspace Grid */
+.workspace {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    /* Divider line */
+    background-color: var(--border-color);
+    /* Creates the gap line */
+    overflow: hidden;
+}
+
+.pane {
+    background-color: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.pane-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(30, 41, 59, 0.3);
+}
+
+.pane-header h3 {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.pane-stats {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.pane-stats.highlight {
+    color: var(--accent-gold);
+}
+
+.savings-tag {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--accent-gold);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.editor-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-editor);
+    border: none;
+    color: var(--text-white);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 1.5rem;
+    resize: none;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: rgba(148, 163, 184, 0.3);
+}
+
+/* Left Input Pane Special */
+.input-pane textarea {
+    background: var(--bg-dark);
+    /* Slightly lighter than editor bg for contrast? or same */
+}
+
+/* FAB Copy Button */
+.fab {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #000;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+/* Action Button */
+.btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    transition: all 0.2s;
+}
+
+.btn.primary {
+    background: var(--accent-gold);
+    color: #000;
+}
+
+.btn.primary:hover {
+    background: #d97706;
+}
+
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--accent-green);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    opacity: 0;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast.hidden {
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    body {
+        overflow-y: auto;
+    }
+
+    /* Allow scroll on mobile */
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .workspace {
+        height: 80vh;
+    }
+}

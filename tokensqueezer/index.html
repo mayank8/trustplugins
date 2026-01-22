@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Squeezer - Prompt Workbench</title>
+    <meta name="description"
+        content="Advanced prompt optimization workbench. Minify prompts, remove stop words, and save tokens with real-time comparison.">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div id="app-header"></div>
+
+        <!-- App Info Section -->
+        <div class="app-hero">
+            <h1 class="hero-title">Token Squeezer</h1>
+            <p class="hero-desc">Optimize prompts & save tokens.</p>
+        </div>
+
+        <!-- Toolbar / Controls -->
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <span class="toolbar-label">Compression Level:</span>
+                <div class="radio-group">
+                    <label class="radio-chip">
+                        <input type="radio" name="level" value="low" checked>
+                        <span>Low</span>
+                    </label>
+                    <label class="radio-chip">
+                        <input type="radio" name="level" value="aggressive">
+                        <span>Aggressive</span>
+                    </label>
+                    <label class="radio-chip">
+                        <input type="radio" name="level" value="advanced">
+                        <span>Advanced</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="toolbar-group right">
+                <button id="squeeze-btn" class="btn primary">
+                    <span class="btn-icon">⚡</span>
+                    <span class="btn-text">Update</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Workspace -->
+        <main class="workspace">
+            <!-- Left Pane: Input -->
+            <section class="pane input-pane">
+                <div class="pane-header">
+                    <h3>Verbose Input</h3>
+                    <div class="pane-stats">
+                        <span id="orig-tokens">0</span> tokens
+                    </div>
+                </div>
+                <div class="editor-wrapper">
+                    <textarea id="text-input" placeholder="Paste your prompt here..." autofocus></textarea>
+                </div>
+            </section>
+
+            <!-- Right Pane: Output -->
+            <section class="pane output-pane">
+                <div class="pane-header">
+                    <h3>Optimized Output</h3>
+                    <div class="pane-stats highlight">
+                        <span id="squeezed-tokens">0</span> tokens
+                        <span id="savings-percent" class="savings-tag">0% Saved</span>
+                    </div>
+                </div>
+                <div class="editor-wrapper">
+                    <textarea id="text-output" readonly placeholder="Squeezed prompt will appear here..."></textarea>
+                </div>
+                <!-- Floating Action Button for Copy -->
+                <button id="copy-btn" class="fab" title="Copy to Clipboard">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer removed as per request -->
+    </div>
+
+    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+
+    <!-- Shared Layout -->
+    <script src="../layout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Layout.renderHeader({
+                rootPath: '..',
+                activePage: 'tokensqueezer'
+            });
+            // No Footer
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
