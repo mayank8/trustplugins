@@ -1,0 +1,606 @@
+:root {
+    /* TrustPlugins Theme Variables */
+    --primary-blue: #0ea5e9;
+    --primary-dark: #0284c7;
+    --accent-green: #10b981;
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --text-white: #f8fafc;
+    --text-gray: #94a3b8;
+    --border-color: #334155;
+
+    /* CleanPaste Mapped Variables (Dark Mode Default) */
+    --bg-color: var(--bg-dark);
+    --text-color: var(--text-white);
+    --sidebar-bg: var(--bg-card);
+    --editor-bg: rgba(30, 41, 59, 0.5);
+    /* Semi-transparent card bg */
+    --editor-border: var(--border-color);
+    --primary-color: var(--primary-blue);
+    --primary-hover: var(--primary-dark);
+    --accent-color: var(--accent-green);
+    --toggle-bg: var(--border-color);
+    --toggle-active: var(--accent-green);
+
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.2);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+}
+
+/* Light Mode (Optional Override) */
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --sidebar-bg: #ffffff;
+    --editor-bg: #ffffff;
+    --editor-border: #e2e8f0;
+    --primary-color: #0ea5e9;
+    --primary-hover: #0284c7;
+    --toggle-bg: #cbd5e1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-ui);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    /* Allow scrolling */
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Allow expanding */
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--sidebar-bg);
+    border-bottom: 1px solid var(--editor-border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.logo-icon {
+    font-family: var(--font-mono);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-gray);
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.theme-toggle:hover {
+    color: var(--text-white);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    color: var(--bg-dark);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Icons for theme toggle */
+.sun-icon {
+    display: block;
+}
+
+.moon-icon {
+    display: none;
+}
+
+[data-theme="light"] .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] .moon-icon {
+    display: block;
+}
+
+
+.main-layout {
+    display: flex;
+    flex: 1;
+    /* Remove overflow: hidden */
+}
+
+.sidebar {
+    width: 320px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--editor-border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* Remove overflow-y: auto, let it scroll with page or sticky?
+       For now user wants page scrollable. Let's make sidebar sticky. */
+    position: sticky;
+    top: 0;
+    height: fit-content;
+    max-height: 100vh;
+}
+
+.sidebar-header .app-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.sidebar-header .app-description {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-header .divider {
+    height: 1px;
+    background-color: var(--editor-border);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-header h2 {
+    color: var(--text-white);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="light"] .sidebar-header h2 {
+    color: var(--bg-dark);
+}
+
+
+.editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    background-color: var(--bg-color);
+}
+
+#text-input {
+    flex: 1;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid var(--editor-border);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.6;
+    background-color: var(--editor-bg);
+    color: var(--text-color);
+    resize: vertical;
+    /* Allow resizing vertically */
+    outline: none;
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    min-height: 500px;
+    /* Ensure good default height */
+}
+
+#text-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Toggle Switch */
+.toggle-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-control input {
+    display: none;
+}
+
+.toggle-track {
+    width: 44px;
+    height: 24px;
+    background-color: var(--toggle-bg);
+    border-radius: 24px;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.toggle-control input:checked+.toggle-track {
+    background-color: var(--toggle-active);
+}
+
+.toggle-control input:checked+.toggle-track::after {
+    transform: translateX(20px);
+}
+
+.label-text {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-gray);
+}
+
+.toggle-control:hover .label-text {
+    color: var(--text-color);
+}
+
+
+.info-tooltip {
+    color: var(--text-gray);
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    cursor: help;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#caps-mode {
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--editor-border);
+    background-color: var(--bg-card);
+    color: var(--text-color);
+    font-family: var(--font-ui);
+    cursor: pointer;
+}
+
+[data-theme="light"] #caps-mode {
+    background-color: #fff;
+}
+
+
+.stats-panel {
+    margin-top: auto;
+    display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--editor-border);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+[data-theme="light"] .stat-value {
+    color: #0f172a;
+}
+
+
+.action-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 50px;
+    /* TrustPlugins style */
+    font-family: var(--font-main);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.1s, opacity 0.2s, box-shadow 0.2s;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.4);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--text-gray);
+    border: 1px solid transparent;
+}
+
+.btn.secondary:hover {
+    color: var(--text-white);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .btn.secondary:hover {
+    color: #0f172a;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+/* Header & Nav */
+.header {
+    background: radial-gradient(circle at top right, var(--bg-card) 0%, var(--bg-dark) 100%);
+    padding: 0;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-gray);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-white);
+}
+
+[data-theme="light"] .nav-links a.active {
+    color: var(--primary-blue);
+}
+
+
+/* Footer - Force visible */
+.footer {
+    display: block !important;
+    background: var(--bg-card);
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-brand h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-brand p {
+    color: var(--text-gray);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-white);
+}
+
+.footer-links a {
+    color: var(--text-gray);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--primary-blue);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .app-container {
+        height: 100vh;
+    }
+
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        flex-direction: row;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--editor-border);
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .sidebar-header h2 {
+        display: none;
+    }
+
+    .controls {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 1.5rem;
+    }
+
+    .label-text {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .stats-panel {
+        display: none;
+        /* Move stats to footer or condense */
+    }
+
+    .control-group {
+        display: none;
+        /* Hide advanced options on strictly mobile initially or put in menu */
+    }
+
+    .editor-area {
+        padding: 1rem;
+    }
+
+    #text-input {
+        padding: 1rem;
+    }
+
+    .footer {
+        display: block;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.8rem;
+        color: var(--text-gray);
+        background-color: var(--bg-card);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .footer a {
+        color: var(--primary-blue);
+        text-decoration: none;
+    }
+}
