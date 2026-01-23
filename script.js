@@ -73,6 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'tokensqueezer/assets/logo.png',
             appLink: 'tokensqueezer/index.html',
             type: 'webapp'
+        },
+        {
+            id: 'pixeltune',
+            name: 'PixelTune',
+            tagline: 'Resize, convert, and optimize images locally.',
+            description: 'A privacy-first image tool. Resize by pixels or percentage, change aspect ratios, and convert between JPG, PNG, and WEBP formats entirely within your browser.',
+            features: [
+                'Precise Resizing (Pixels/%)',
+                'Format Conversion (JPG/PNG/WEBP)',
+                '100% Client-Side Processing'
+            ],
+            icon: 'pixeltune/assets/logo.png',
+            appLink: 'pixeltune/index.html',
+            type: 'webapp'
         }
     ];
 

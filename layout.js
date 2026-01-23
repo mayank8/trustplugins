@@ -22,7 +22,8 @@ const Layout = {
 
         const webApps = [
             { id: 'cleanpaste', name: 'CleanPaste', appLink: 'cleanpaste/index.html', type: 'webapp' },
-            { id: 'tokensqueezer', name: 'Token Squeezer', appLink: 'tokensqueezer/index.html', type: 'webapp' }
+            { id: 'tokensqueezer', name: 'Token Squeezer', appLink: 'tokensqueezer/index.html', type: 'webapp' },
+            { id: 'pixeltune', name: 'PixelTune', appLink: 'pixeltune/index.html', type: 'webapp' }
         ];
 
         const headerContainer = document.getElementById('app-header');
