@@ -42,6 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'assets/icons/tubetunnel.png',
             storeLink: 'https://chromewebstore.google.com/detail/tubetunnel-hide-shorts-co/ccngecmipkielckpekbofkejbgciiopo',
             type: 'extension'
+        },
+        {
+            id: 'sonicwave',
+            name: 'SonicWave',
+            tagline: 'Master your audio with a powerful 10-band Equalizer and Bass Booster.',
+            description: 'Transform your listening experience with Sonicwave. The all-in-one audio enhancement tool designed to give you complete control over your sound. Features a 10-band equalizer, bass booster, and 21 professional presets.',
+            features: [
+                'Professional 10-Band Equalizer',
+                'Powerful Bass & Volume Booster',
+                '21 Ready-to-Use Presets'
+            ],
+            icon: 'assets/icons/sonicwave.png',
+            storeLink: 'https://chromewebstore.google.com/detail/sonicwave-audio-equalizer/mlhaeocjfalnlojjdfjnhghnijogfnhj',
+            type: 'extension'
         }
     ];
 

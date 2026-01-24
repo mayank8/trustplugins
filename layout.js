@@ -17,7 +17,8 @@ const Layout = {
         const plugins = [
             { id: 'chrometrack', name: 'ChromeTrack', type: 'extension' },
             { id: 'gocapture', name: 'GoCapture', type: 'extension' },
-            { id: 'tubetunnel', name: 'TubeTunnel', type: 'extension' }
+            { id: 'tubetunnel', name: 'TubeTunnel', type: 'extension' },
+            { id: 'sonicwave', name: 'SonicWave', type: 'extension' }
         ];
 
         const webApps = [
