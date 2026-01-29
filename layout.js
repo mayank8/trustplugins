@@ -15,10 +15,13 @@ const Layout = {
 
         // Navigation Data
         const plugins = [
+            { id: 'adblock-ultra', name: 'AdBlock Ultra', type: 'extension' },
             { id: 'chrometrack', name: 'ChromeTrack', type: 'extension' },
             { id: 'gocapture', name: 'GoCapture', type: 'extension' },
             { id: 'tubetunnel', name: 'TubeTunnel', type: 'extension' },
-            { id: 'sonicwave', name: 'SonicWave', type: 'extension' }
+            { id: 'sonicwave', name: 'SonicWave', type: 'extension' },
+            { id: 'gemini-chat-exporter', name: 'Gemini Chat Exporter', type: 'extension' },
+            { id: 'chatexport', name: 'ChatExport', type: 'extension' }
         ];
 
         const webApps = [

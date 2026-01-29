@@ -2,6 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Data Configuration
     const plugins = [
         {
+            id: 'adblock-ultra',
+            name: 'AdBlock Ultra',
+            tagline: 'The unlimited, free, and secure ad blocker.',
+            description: 'Block ads & trackers instantly. AdBlock Ultra is a high-performance content blocker designed to give you back control. Stops banner ads, video ads, and invisible trackers without slowing you down.',
+            features: [
+                'Total Ad Neutralization (Banners, Pop-ups)',
+                'Privacy First: Blocks Invisible Trackers',
+                'Next-Gen Performance: 2x Faster Page Loads'
+            ],
+            icon: 'assets/icons/adblock-ultra.png',
+            storeLink: 'https://chromewebstore.google.com/detail/adblock-ultra-unlimited-f/ciigbkkioaajllcbnngmpdknbjajenhm',
+            type: 'extension'
+        },
+        {
             id: 'chrometrack',
             name: 'ChromeTrack',
             tagline: 'Track time, block distractions, and analyze habits.',
@@ -55,6 +69,34 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             icon: 'assets/icons/sonicwave.png',
             storeLink: 'https://chromewebstore.google.com/detail/sonicwave-audio-equalizer/mlhaeocjfalnlojjdfjnhghnijogfnhj',
+            type: 'extension'
+        },
+        {
+            id: 'gemini-chat-exporter',
+            name: 'Gemini Chat Exporter',
+            tagline: 'Export Gemini conversations to PDF & Markdown.',
+            description: 'Bridge the gap between AI chat and your workflow. Export your Gemini conversations to professional PDFs or clean Markdown for Obsidian/Notion. Preserves code blocks, math formulas, and tables.',
+            features: [
+                'Export to PDF, Markdown, Text, CSV, JSON',
+                'Preserves Code Blocks & Math Formulas',
+                '100% Local Processing (Privacy First)'
+            ],
+            icon: 'assets/icons/gemini-chat-exporter.png',
+            storeLink: 'https://chromewebstore.google.com/detail/gemini-chat-exporter-pdf/dbcnegkifoncpgbhiidjkcnjoghikbac',
+            type: 'extension'
+        },
+        {
+            id: 'chatexport',
+            name: 'ChatExport',
+            tagline: 'Export ChatGPT conversations to PDF instantly.',
+            description: 'The easiest way to archive and share ChatGPT interactions. Adds a simple export button to ChatGPT to generate professional PDFs with customizable layouts.',
+            features: [
+                'One-Click PDF Export',
+                'Customizable Layouts (A4/Letter)',
+                'Clean Article-Style Output'
+            ],
+            icon: 'assets/icons/chatexport.png',
+            storeLink: 'https://chromewebstore.google.com/detail/chatexport-chatgpt-to-pdf/gjcafbabhdepnglbaeohgajanjioomfi',
             type: 'extension'
         }
     ];
