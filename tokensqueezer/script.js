@@ -10,14 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Controls
     const levelInputs = document.querySelectorAll('input[name="level"]');
-    const squeezeBtn = document.getElementById('squeeze-btn');
     const copyBtn = document.getElementById('copy-btn');
     const toast = document.getElementById('toast');
+
+    // Filters
+    const filterUrls = document.getElementById('filter-urls');
+    const filterMarkdown = document.getElementById('filter-markdown');
+    const filterPunctuation = document.getElementById('filter-punctuation');
+    const filterLowercase = document.getElementById('filter-lowercase');
 
     // --- State ---
     let state = {
         text: '',
-        level: 'low'
+        level: 'low',
+        filterUrls: false,
+        filterMarkdown: false,
+        filterPunctuation: false,
+        filterLowercase: false
     };
 
     // --- STOP WORDS ---
@@ -31,8 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const STOP_WORDS_REGEX = new RegExp(`\\b(${STOP_WORDS.join('|')})\\b`, 'gi');
 
     // --- Init ---
-    // Initialize state from checked radio
+    // Initialize state from UI
     state.level = document.querySelector('input[name="level"]:checked').value;
+    state.filterUrls = filterUrls.checked;
+    state.filterMarkdown = filterMarkdown.checked;
+    state.filterPunctuation = filterPunctuation.checked;
+    state.filterLowercase = filterLowercase.checked;
 
     // --- Event Listeners ---
     textInput.addEventListener('input', handleInput);
@@ -42,6 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('change', (e) => {
             state.level = e.target.value;
             processText(); // Reprocess immediately
+        });
+    });
+
+    // Real-time update on filters
+    const filters = [
+        { el: filterUrls, key: 'filterUrls' },
+        { el: filterMarkdown, key: 'filterMarkdown' },
+        { el: filterPunctuation, key: 'filterPunctuation' },
+        { el: filterLowercase, key: 'filterLowercase' }
+    ];
+
+    filters.forEach(f => {
+        f.el.addEventListener('change', (e) => {
+            state[f.key] = e.target.checked;
+            processText();
         });
     });
 
@@ -62,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const squeezed = squeezeText(state.text, state.level);
+        const squeezed = squeezeText(state.text, state);
         textOutput.value = squeezed;
 
         const origTokens = estimateTokens(state.text);
@@ -92,32 +120,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ... skipping to squeezeText ... */
 
-    function squeezeText(text, level) {
+    function squeezeText(text, state) {
         let result = text;
+        const level = state.level;
+
+        // Custom Filters
+        if (state.filterUrls) {
+            result = result.replace(/https?:\/\/[^\s]+/g, '');
+        }
+
+        if (state.filterMarkdown) {
+            result = result.replace(/[#*`_~]/g, ''); // Removes common markdown chars
+            result = result.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'); // Removes markdown links but keeps text
+        }
+
+        if (state.filterPunctuation) {
+            result = result.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"?]/g, ' ');
+        }
+
+        if (state.filterLowercase) {
+            result = result.toLowerCase();
+        }
 
         // Level 1: Low (Always Applied)
         result = result.replace(/[ \t]+/g, ' ');
         result = result.replace(/\n{3,}/g, '\n\n');
         result = result.trim();
 
-        if (level === 'aggressive') {
+        if (level === 'advanced') {
+            // Level 3: Advanced (Check if JSON)
+            try {
+                const json = JSON.parse(text);
+                return JSON.stringify(json);
+            } catch (e) {
+                // Not JSON, continue to other optimizations
+            }
+        }
+
+        if (level === 'aggressive' || level === 'advanced') {
             // Level 2: Aggressive (Stop Words)
             result = result.replace(STOP_WORDS_REGEX, ' ');
             result = result.replace(/[ \t]+/g, ' ').trim();
         }
 
         if (level === 'advanced') {
-            // Level 3: Advanced (Code)
-            try {
-                const json = JSON.parse(text);
-                result = JSON.stringify(json);
-            } catch (e) {
-                result = result.replace(/\/\/.*$/gm, '');
-                result = result.replace(/\/\*[\s\S]*?\*\//g, '');
-                result = result.replace(/\s*([\{\}\[\]\(\)=+\-*/;,])\s*/g, '$1');
-                result = result.replace(/[ \t]+/g, ' ');
-                result = result.replace(/\n+/g, '');
-            }
+            // Level 3: Advanced (Code Minification)
+            result = result.replace(/\/\/.*$/gm, '');
+            result = result.replace(/\/\*[\s\S]*?\*\//g, '');
+            result = result.replace(/\s*([\{\}\[\]\(\)=+\-*/;,])\s*/g, '$1');
+            result = result.replace(/[ \t]+/g, ' ');
+            result = result.replace(/\n+/g, '');
         }
 
         return result;
