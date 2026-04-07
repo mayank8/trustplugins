@@ -81,6 +81,7 @@ const Layout = {
                     <!-- Custom Mobile Menu Items -->
                     ${customMenuHtml}
                     
+                    <li><a href="${root}/blog/index.html" class="nav-link ${isActive('blog')}">Blog</a></li>
                     <li><a href="${root}/feedback.html">Feedback</a></li>
                     <!-- Theme Toggle Removed as per request -->
                 </ul>
